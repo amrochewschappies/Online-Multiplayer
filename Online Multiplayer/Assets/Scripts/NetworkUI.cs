@@ -8,12 +8,12 @@ public class NetworkUI : MonoBehaviour
 
     public void HostGame()
     {
-        NetworkManager.singleton.StartHost();
+        //NetworkManager.singleton.StartHost();
     }
 
     public void JoinGame()
     {
-        NetworkManager.singleton.networkAddress = ipInputField.text;
-        NetworkManager.singleton.StartClient();
+        //NetworkManager.singleton.networkAddress = ipInputField.text;
+       // NetworkManager.singleton.StartClient();
     }
 }
