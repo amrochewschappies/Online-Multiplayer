@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEditor;
 using System.Drawing;
 
@@ -6,9 +7,11 @@ namespace rayzngames
 {
 	public class BicycleVehicle : MonoBehaviour
 	{
+		public InputAction PlayerControls;
+		public Vector2 MoveDirection;
 		//debugInfo	
-		float horizontalInput;
-		float verticalInput;
+		//float MoveDirection.x;
+		//float MoveDirection.y;
 		bool braking;
 		Rigidbody rb;	
 
@@ -63,6 +66,16 @@ namespace rayzngames
 		[HeaderAttribute("Speed M/s")]
 		[SerializeField] float currentSpeed;
 
+		private void OnEnable()
+        {
+			PlayerControls.Enable();
+        }
+		
+		private void OnDisable()
+        {
+			PlayerControls.Disable();
+        }
+
 		// Start is called before the first frame update
 		void Start()
 		{
@@ -92,14 +105,15 @@ namespace rayzngames
 
 		private void GetInput()
 		{
-			horizontalInput = Input.GetAxis("Horizontal");
-			verticalInput = Input.GetAxis("Vertical");
+			//MoveDirection.x = Input.GetAxis("Horizontal");
+			//MoveDirection.y = Input.GetAxis("Vertical");
+			MoveDirection = PlayerControls.ReadValue<Vector2>();
 			braking = Input.GetKey(KeyCode.Space);
 		}
 
 		private void HandleEngine()
 		{		
-			backWheel.motorTorque = braking? 0f : verticalInput * motorForce;	
+			backWheel.motorTorque = braking? 0f : MoveDirection.y * motorForce;	
 			//If we are braking, ApplyBreaking applies brakeForce conditional is embeded in parameter	
 			float force = braking ? brakeForce : 0f;
 			ApplyBraking(force);
@@ -127,12 +141,12 @@ namespace rayzngames
 		{		
 			MaxSteeringReductor();
 
-			currentSteeringAngle = Mathf.Lerp(currentSteeringAngle, current_maxSteeringAngle * horizontalInput, turnSmoothing * 0.1f);
+			currentSteeringAngle = Mathf.Lerp(currentSteeringAngle, current_maxSteeringAngle * MoveDirection.x, turnSmoothing * 0.1f);
 			frontWheel.steerAngle = currentSteeringAngle;
 
 			//We set the target lean angle to the + or - input value of our steering 
 			//We invert our input for rotating in the ocrrect axis
-			targetLeanAngle = maxLeanAngle * -horizontalInput;		
+			targetLeanAngle = maxLeanAngle * -MoveDirection.x;		
 		}
 		public void UpdateHandles()
 		{		
@@ -176,8 +190,8 @@ namespace rayzngames
 			}
 			else
 			{			
-				frontTrail.emitting = false;
-				rearTrail.emitting = false;
+				//frontTrail.emitting = false;
+				//rearTrail.emitting = false;
 			}		
 		}
 

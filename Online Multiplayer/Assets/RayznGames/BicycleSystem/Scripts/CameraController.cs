@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace rayzngames 
 { 
 	public class CameraController : MonoBehaviour
 	{
+		public InputAction PlayerControls;
+		public Vector2 MoveDirection;
+
 		public Transform target;
 		[Space(10)]
 		public float sensitivity;
@@ -12,8 +16,19 @@ namespace rayzngames
 		Vector3 camOffset;
 
 		[SerializeField] float keepAtDist_Col = 0.75f;
-		[SerializeField]LayerMask collidesWith;	
-	
+		[SerializeField]LayerMask collidesWith;
+
+
+		private void OnEnable()
+		{
+			PlayerControls.Enable();
+		}
+
+		private void OnDisable()
+		{
+			PlayerControls.Disable();
+		}
+
 		private void Start()
 		{		
 			camPos = transform.GetChild(0);
@@ -37,12 +52,14 @@ namespace rayzngames
 
 		private void ThirdPersonRotate()
 		{
+			
+			MoveDirection = PlayerControls.ReadValue<Vector2>();
 			// Get mouse input
 			float mouseX = Input.GetAxis("Mouse X"); //moves the Y Rotation
 			float mouseY = Input.GetAxis("Mouse Y");//moves the X Rotation
 
 			// Rotate the camera horizontally (Y rotation ) based on Mouse X movement 
-			transform.Rotate(Vector3.up * mouseX * sensitivity);
+			transform.Rotate(Vector3.up * MoveDirection.x * sensitivity);
 
 			float currentXRotation = transform.eulerAngles.x;
 
@@ -52,7 +69,7 @@ namespace rayzngames
 				currentXRotation -= 360f;
 			} 
 			// Rotate the camera vertically based on mouse movement		
-			float clampedXRotation = Mathf.Clamp(currentXRotation - mouseY * sensitivity, -70f, 70f);
+			float clampedXRotation = Mathf.Clamp(currentXRotation - MoveDirection.y * sensitivity, -70f, 70f);
 
 			// Apply the rotation
 			transform.rotation = Quaternion.Euler(clampedXRotation, transform.eulerAngles.y, transform.rotation.z);
