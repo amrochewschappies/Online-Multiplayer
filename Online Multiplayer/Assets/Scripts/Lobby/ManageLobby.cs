@@ -20,11 +20,17 @@ public class ManageLobby : MonoBehaviour
 
     public void AddPlayer(NetworkIdentity playerIdentity, string playerName)
     {
-        GameObject item = Instantiate(playerListItemPrefab, playerListContainer);
-        var listItem = item.GetComponent<LobbyPlayerListItem>();
-        listItem.SetName(playerName);
+       //GameObject item = Instantiate(playerListItemPrefab, playerListContainer);
+        //var listItem = item.GetComponent<LobbyPlayerListItem>();
+        //listItem.SetName(playerName);
 
-        playerListItems[playerIdentity.netId] = item;
+        //playerListItems[playerIdentity.netId] = item;
+        
+        
+        
+        // when player gets added to server - store in list of playersInLObby[]
+        //iterate through players in lobby
+        //Assigned 3rd player onwards to team 
     }
 
     public void RemovePlayer(NetworkIdentity playerIdentity)

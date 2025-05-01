@@ -27,7 +27,7 @@ public class LobbyUI : MonoBehaviour
     {
         hostButton.onClick.AddListener(() =>
         {
-            NetworkManager.singleton.StartHost();
+            StartCoroutine(loadLobby());
         });
 
         joinButton.onClick.AddListener(() =>
@@ -65,10 +65,10 @@ public class LobbyUI : MonoBehaviour
             else
             {
                 StartCoroutine(ShowErrorText());
+                
             }
         });
     }
-
     private void Update()
     {
         if (nameInput.text != null)
@@ -90,5 +90,14 @@ public class LobbyUI : MonoBehaviour
         ErrorText.SetActive(true);
         yield return new WaitForSeconds(2f);
         ErrorText.SetActive(false);
+    }
+
+    IEnumerator loadLobby()
+    {
+        NetworkManager.singleton.StartHost();
+        Debug.LogWarning("Server has started.");
+        yield return new WaitForSeconds(0.01f);
+        NetworkManager.singleton.ServerChangeScene("LobbyScene");
+        Debug.LogWarning("LobbyScene has been set.");
     }
 }

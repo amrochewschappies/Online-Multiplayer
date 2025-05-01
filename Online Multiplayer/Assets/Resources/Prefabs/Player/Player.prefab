@@ -408,6 +408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376d5fc2aac599e4280d8824687e434f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  playerName: 
 --- !u!1 &7620167673275810977
 GameObject:
   m_ObjectHideFlags: 0

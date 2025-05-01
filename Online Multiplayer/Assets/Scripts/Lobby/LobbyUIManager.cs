@@ -47,14 +47,5 @@ public class LobbyUIManager : MonoBehaviour
             }
         }
     }
-
-    public void ShowHostPanel()
-    {
-        hostPanel.SetActive(true);  
-    }
-
-    public void HideHostPanel()
-    {
-        hostPanel.SetActive(false);  
-    }
+    
 }
