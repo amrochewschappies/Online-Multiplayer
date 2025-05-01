@@ -220,7 +220,13 @@ namespace rayzngames
 		{
 			currentSpeed = rb.linearVelocity.magnitude;
 		}
+
+		void OnCollisionEnter(Collision col)
+		{
+			Debug.Log(col.gameObject.name);
+		}
 	}
+
 
 	#region CustomInspector
 	[CustomEditor(typeof(BicycleVehicle))]

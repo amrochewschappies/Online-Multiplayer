@@ -12,6 +12,7 @@ namespace rayzngames
 		private void OnTriggerStay(Collider other)
 		{
 			contact = true;
+			Debug.Log("Collision on the asshole");
 		}
 		private void OnTriggerExit(Collider other)
 		{
