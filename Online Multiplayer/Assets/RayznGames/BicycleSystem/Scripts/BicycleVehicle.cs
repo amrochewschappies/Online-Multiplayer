@@ -8,6 +8,7 @@ namespace rayzngames
 	public class BicycleVehicle : MonoBehaviour
 	{
 		public InputAction PlayerControls;
+		private bool boosted = false;
 		public Vector2 MoveDirection;
 		//debugInfo	
 		//float MoveDirection.x;
@@ -224,14 +225,23 @@ namespace rayzngames
 		void OnTriggerEnter(Collider col)
 		{
 			Debug.Log(col.gameObject.name);
-			if (col.gameObject.CompareTag("Boost Pad"))
+			if (col.gameObject.CompareTag("Boost Pad") && !boosted)
 			{
 				Debug.Log("speed Bosdst");
 				Rigidbody rb = gameObject.GetComponent<Rigidbody>();
 				Vector3 boostDirection = transform.forward; 
-				float boostForce = 300f; 
+				float boostForce = 150f; 
 
-				rb.AddForce(boostDirection * boostForce, ForceMode.Impulse); 
+				rb.AddForce(boostDirection * boostForce, ForceMode.Impulse);
+				boosted = true;
+			}
+		}
+
+		void OnTriggerExit(Collider col)
+        {
+			if (col.gameObject.CompareTag("Boost Pad"))
+			{
+				boosted = false;
 			}
 		}
 	}
