@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 3436561505241296909}
   - component: {fileID: 7458086259441406428}
   m_Layer: 8
-  m_Name: Bicycle
+  m_Name: Team One (MrsC)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
