@@ -224,6 +224,15 @@ namespace rayzngames
 		void OnCollisionEnter(Collision col)
 		{
 			Debug.Log(col.gameObject.name);
+			if (col.gameObject.CompareTag("Boost Pad"))
+			{
+				Debug.Log("speed Bosdst");
+				Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+				Vector3 boostDirection = transform.forward; 
+				float boostForce = 10f; 
+
+				rb.AddForce(boostDirection * boostForce, ForceMode.Impulse); 
+			}
 		}
 	}
 
