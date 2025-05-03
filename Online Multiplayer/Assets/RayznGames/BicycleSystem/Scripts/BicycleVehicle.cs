@@ -221,7 +221,7 @@ namespace rayzngames
 			currentSpeed = rb.linearVelocity.magnitude;
 		}
 
-		void OnCollisionEnter(Collision col)
+		void OnTriggerEnter(Collider col)
 		{
 			Debug.Log(col.gameObject.name);
 			if (col.gameObject.CompareTag("Boost Pad"))
@@ -229,7 +229,7 @@ namespace rayzngames
 				Debug.Log("speed Bosdst");
 				Rigidbody rb = gameObject.GetComponent<Rigidbody>();
 				Vector3 boostDirection = transform.forward; 
-				float boostForce = 10f; 
+				float boostForce = 300f; 
 
 				rb.AddForce(boostDirection * boostForce, ForceMode.Impulse); 
 			}
