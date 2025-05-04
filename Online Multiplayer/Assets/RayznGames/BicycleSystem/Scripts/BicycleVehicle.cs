@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
 using System.Drawing;
-
+using Mirror;
 namespace rayzngames
 {
-	public class BicycleVehicle : MonoBehaviour
+	public class BicycleVehicle : NetworkBehaviour
 	{
+
+  
 		public InputAction PlayerControls;
 		private bool boosted = false;
 		public Vector2 MoveDirection;
@@ -88,8 +90,9 @@ namespace rayzngames
 			backWheel.ConfigureVehicleSubsteps(6, 15, 18);
 			rb = GetComponent<Rigidbody>();		
 		}
-		private void Update()
+		void Update()
 		{
+			if (!isOwned) return; // Correct way to check authority in latest Mirror
 			GetInput();		
 		}
 		// Update is called once per frame
