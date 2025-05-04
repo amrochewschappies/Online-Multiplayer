@@ -10,6 +10,9 @@ TagManager:
   - Team 1
   - Team1Trail
   - Team2Trail
+  - SpawnPoint
+  - Team1
+  - Team2
   layers:
   - Default
   - TransparentFX
