@@ -3,11 +3,12 @@ using UnityEngine.InputSystem;
 using UnityEditor;
 using System.Drawing;
 using Mirror;
+using Unity.VisualScripting;
+
 namespace rayzngames
 {
 	public class BicycleVehicle : NetworkBehaviour
 	{
-
   
 		public InputAction PlayerControls;
 		private bool boosted = false;
@@ -92,7 +93,7 @@ namespace rayzngames
 		}
 		void Update()
 		{
-			if (!isOwned) return; // Correct way to check authority in latest Mirror
+			if (!isLocalPlayer) return; // Correct way to check authority in latest Mirror
 			GetInput();		
 		}
 		// Update is called once per frame
