@@ -924,6 +924,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1964419979952389054, guid: 94a5e4f6dd75c864da109dfb60a39cc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405059478199406088, guid: 94a5e4f6dd75c864da109dfb60a39cc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2707731870631379692, guid: 94a5e4f6dd75c864da109dfb60a39cc7, type: 3}
       propertyPath: m_Name
       value: SpawnPoints
@@ -932,6 +940,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: SpawnPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 4115077299187295955, guid: 94a5e4f6dd75c864da109dfb60a39cc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4861160290680315559, guid: 94a5e4f6dd75c864da109dfb60a39cc7, type: 3}
       propertyPath: m_TagString
       value: SpawnPoint
@@ -939,6 +951,10 @@ PrefabInstance:
     - target: {fileID: 5054695461280495818, guid: 94a5e4f6dd75c864da109dfb60a39cc7, type: 3}
       propertyPath: m_TagString
       value: SpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238205046590884303, guid: 94a5e4f6dd75c864da109dfb60a39cc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.8
       objectReference: {fileID: 0}
     - target: {fileID: 6251462200716691142, guid: 94a5e4f6dd75c864da109dfb60a39cc7, type: 3}
       propertyPath: m_LocalPosition.x
