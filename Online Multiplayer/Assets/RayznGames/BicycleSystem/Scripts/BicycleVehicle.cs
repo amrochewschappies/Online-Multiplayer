@@ -66,6 +66,7 @@ namespace rayzngames
 		[Space(20)]
 		[HeaderAttribute("Speed M/s")]
 		[SerializeField] float currentSpeed;
+		public CameraController cameraController;
 
 		private void OnEnable()
         {
@@ -83,8 +84,8 @@ namespace rayzngames
 			frontContact = frontTrail.transform.GetChild(0).GetComponent<ContactProvider>();
 			rearContact = rearTrail.transform.GetChild(0).GetComponent<ContactProvider>();		
 			//Important to stop bike from Jittering
-			frontWheel.ConfigureVehicleSubsteps(5, 12, 15);
-			backWheel.ConfigureVehicleSubsteps(5, 12, 15);
+			frontWheel.ConfigureVehicleSubsteps(6, 15, 18);
+			backWheel.ConfigureVehicleSubsteps(6, 15, 18);
 			rb = GetComponent<Rigidbody>();		
 		}
 		private void Update()
@@ -230,10 +231,19 @@ namespace rayzngames
 				Debug.Log("speed Bosdst");
 				Rigidbody rb = gameObject.GetComponent<Rigidbody>();
 				Vector3 boostDirection = transform.forward; 
-				float boostForce = 150f; 
+				float boostForce = 350f; 
 
 				rb.AddForce(boostDirection * boostForce, ForceMode.Impulse);
 				boosted = true;
+			}
+			if (col.gameObject.CompareTag("Jump Pad") && !boosted)
+			{
+				Debug.Log("Jump Bosdst");
+				Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+				Vector3 boostDirection = transform.up;
+				float boostForce = 250f;
+
+				rb.AddForce(boostDirection * boostForce, ForceMode.Impulse);
 			}
 		}
 

@@ -13,10 +13,13 @@ namespace rayzngames
 		}
 		private void OnTriggerEnter(Collider other)
 		{
-			contact = true;
-			Debug.Log("Collision on the asshole");
-			Instantiate(ExplosionParticleFX, other.gameObject.transform.position, Quaternion.identity);
-			cameraController.TriggerShake(0.1f, 1f);
+			if (other.gameObject.CompareTag("Team 1"))
+			{
+				contact = true;
+				Debug.Log("Collision on the asshole");
+				Instantiate(ExplosionParticleFX, other.gameObject.transform.position, Quaternion.identity);
+				cameraController.TriggerShake(0.1f, 1f);
+			}
 		}
 		private void OnTriggerExit(Collider other)
 		{
