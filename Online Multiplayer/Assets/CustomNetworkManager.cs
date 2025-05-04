@@ -9,6 +9,7 @@ public class CustomNetworkManager : NetworkManager
     private bool gameStarted = false; 
     private int playerAmount = 0; 
 
+    
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         if (spawnPoints.Count == 0)

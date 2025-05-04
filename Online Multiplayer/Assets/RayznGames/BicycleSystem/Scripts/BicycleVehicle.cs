@@ -83,11 +83,14 @@ namespace rayzngames
 			backWheel.ConfigureVehicleSubsteps(6, 15, 18);
 			rb = GetComponent<Rigidbody>();		
 		}
+		[ClientCallback]
 		void Update()
 		{
-			//if (!isLocalPlayer) return; // Correct way to check authority in latest Mirror
-			GetInput();		
+			// Only run input-handling on the local client’s player
+			if (!isLocalPlayer) return;
+			GetInput();
 		}
+
 		// Update is called once per frame
 		void FixedUpdate()
 		{
