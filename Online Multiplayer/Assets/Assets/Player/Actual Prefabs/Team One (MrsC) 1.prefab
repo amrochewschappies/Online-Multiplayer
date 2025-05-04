@@ -653,6 +653,7 @@ MonoBehaviour:
   current_maxSteeringAngle: 0
   currentLeanAngle: 0
   currentSpeed: 0
+  cameraController: {fileID: 0}
 --- !u!54 &8021115689134555956
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -745,7 +746,7 @@ GameObject:
   - component: {fileID: 4827598831917335771}
   m_Layer: 8
   m_Name: TrailContact
-  m_TagString: Untagged
+  m_TagString: Team1Trail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

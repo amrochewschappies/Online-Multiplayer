@@ -195,7 +195,7 @@ MonoBehaviour:
   steerReductorAmmount: 1
   turnSmoothing: 1
   maxLeanAngle: 20
-  leanSmoothing: 0.3
+  leanSmoothing: 0.041
   handle: {fileID: 6944063293278277143}
   frontWheel: {fileID: 2485586040541911048}
   backWheel: {fileID: 4386874560363697313}
@@ -207,6 +207,7 @@ MonoBehaviour:
   current_maxSteeringAngle: 0
   currentLeanAngle: 0
   currentSpeed: 0
+  cameraController: {fileID: 5093928887093269044}
 --- !u!54 &391969049481679264
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2157,7 +2158,7 @@ GameObject:
   - component: {fileID: 7497878679054369842}
   m_Layer: 8
   m_Name: TrailContact
-  m_TagString: Untagged
+  m_TagString: Team2Trail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2210,7 +2211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c78dad4388bbb44b94bb0bea171928e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraController: {fileID: 0}
+  cameraController: {fileID: 5093928887093269044}
   ExplosionParticleFX: {fileID: 3345248989584403936, guid: 6b5e9c3dedde64240ac58831af0e3754,
     type: 3}
 --- !u!1 &5995290601207449646

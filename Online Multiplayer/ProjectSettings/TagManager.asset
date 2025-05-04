@@ -7,6 +7,9 @@ TagManager:
   - Trail
   - Boost Pad
   - Jump Pad
+  - Team 1
+  - Team1Trail
+  - Team2Trail
   layers:
   - Default
   - TransparentFX

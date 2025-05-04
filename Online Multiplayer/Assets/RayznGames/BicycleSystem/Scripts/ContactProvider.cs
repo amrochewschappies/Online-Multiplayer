@@ -13,12 +13,25 @@ namespace rayzngames
 		}
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.gameObject.CompareTag("Team 1"))
+			if (gameObject.CompareTag("Team1Trail"))
 			{
-				contact = true;
-				Debug.Log("Collision on the asshole");
-				Instantiate(ExplosionParticleFX, other.gameObject.transform.position, Quaternion.identity);
-				cameraController.TriggerShake(0.1f, 1f);
+				if (other.gameObject.CompareTag("Team2"))
+				{
+					contact = true;
+					Debug.Log("Collision on the asshole");
+					Instantiate(ExplosionParticleFX, other.gameObject.transform.position, Quaternion.identity);
+					cameraController.TriggerShake(0.1f, 1f);
+				}
+			}
+			else if (gameObject.CompareTag("Team2Trail"))
+            {
+				if (other.gameObject.CompareTag("Team1"))
+				{
+					contact = true;
+					Debug.Log("Collision on the asshole");
+					Instantiate(ExplosionParticleFX, other.gameObject.transform.position, Quaternion.identity);
+					cameraController.TriggerShake(0.1f, 1f);
+				}
 			}
 		}
 		private void OnTriggerExit(Collider other)
