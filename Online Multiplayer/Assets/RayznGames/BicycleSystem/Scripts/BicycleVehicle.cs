@@ -71,15 +71,7 @@ namespace rayzngames
 		[SerializeField] float currentSpeed;
 		public CameraController cameraController;
 
-		private void OnEnable()
-        {
-			PlayerControls.Enable();
-        }
-		
-		private void OnDisable()
-        {
-			PlayerControls.Disable();
-        }
+	
 
 		// Start is called before the first frame update
 		void Start()
@@ -93,7 +85,7 @@ namespace rayzngames
 		}
 		void Update()
 		{
-			if (!isLocalPlayer) return; // Correct way to check authority in latest Mirror
+			//if (!isLocalPlayer) return; // Correct way to check authority in latest Mirror
 			GetInput();		
 		}
 		// Update is called once per frame
@@ -111,10 +103,10 @@ namespace rayzngames
 
 		private void GetInput()
 		{
-			//MoveDirection.x = Input.GetAxis("Horizontal");
-			//MoveDirection.y = Input.GetAxis("Vertical");
-			MoveDirection = PlayerControls.ReadValue<Vector2>();
-			braking = Input.GetKey(KeyCode.Space);
+			MoveDirection.x = Input.GetAxis("Horizontal");
+			MoveDirection.y = Input.GetAxis("Vertical");
+			//MoveDirection = PlayerControls.ReadValue<Vector2>();
+			//braking = Input.GetKey(KeyCode.Space);
 		}
 
 		private void HandleEngine()
