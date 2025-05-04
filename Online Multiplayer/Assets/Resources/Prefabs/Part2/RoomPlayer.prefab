@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5061138744644216161
+--- !u!1 &2689537124177688867
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8244709378368018426}
-  - component: {fileID: 7917093558197181778}
-  - component: {fileID: 3394133565883411104}
+  - component: {fileID: 5017752823808445019}
+  - component: {fileID: 7818158516268710788}
   m_Layer: 0
-  m_Name: LobbyState
-  m_TagString: Untagged
+  m_Name: RoomPlayer
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8244709378368018426
+--- !u!4 &5017752823808445019
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061138744644216161}
+  m_GameObject: {fileID: 2689537124177688867}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -41.18601, y: 6.2536764, z: 39.98781}
@@ -33,38 +32,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7917093558197181778
+--- !u!114 &7818158516268710788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061138744644216161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9eb7fe150e2db04292c6dfaf48c29ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  playerCountText: {fileID: 0}
-  timerText: {fileID: 0}
-  lobbyCountdown: 10
---- !u!114 &3394133565883411104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061138744644216161}
+  m_GameObject: {fileID: 2689537124177688867}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 159148697
+  _assetId: 3401345174
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
