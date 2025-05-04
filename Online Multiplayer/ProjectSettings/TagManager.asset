@@ -7,6 +7,12 @@ TagManager:
   - SpawnPoint
   - Team1
   - Team2
+  - Trail
+  - Boost Pad
+  - Jump Pad
+  - Team 1
+  - Team1Trail
+  - Team2Trail
   layers:
   - Default
   - TransparentFX
@@ -14,10 +20,10 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - 
-  - 
-  - 
+  - Bicicle
+  - Explosion
+  - Player
+  - Trail
   - 
   - 
   - 
