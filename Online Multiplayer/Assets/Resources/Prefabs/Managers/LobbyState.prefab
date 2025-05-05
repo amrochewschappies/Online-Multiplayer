@@ -51,6 +51,9 @@ MonoBehaviour:
   playerCountText: {fileID: 0}
   timerText: {fileID: 0}
   lobbyCountdown: 10
+  currentPlayerCount: 0
+  timer: 0
+  timerRunning: 0
 --- !u!114 &3394133565883411104
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,20 +10,19 @@ public class LobbyState : NetworkBehaviour
 {
     [Header("UI References (Client Only)")] [SerializeField]
     private TMP_Text playerCountText;
-
     [SerializeField] private TMP_Text timerText;
 
-    [Header("Settings")] [SerializeField] private float lobbyCountdown = 10f;
-
-    // SyncVars moved here
+    [Header("Settings")] [SerializeField] 
+    private float lobbyCountdown = 10f;
+    
     [SyncVar(hook = nameof(OnPlayerCountChanged))]
-    private int currentPlayerCount = 0;
+    [SerializeField]private int currentPlayerCount = 0;
 
     [SyncVar(hook = nameof(OnTimerValueChanged))]
-    private float timer;
+    [SerializeField]private float timer;
 
     [SyncVar(hook = nameof(OnTimerRunningChanged))]
-    private bool timerRunning = false;
+    [SerializeField]private bool timerRunning = false;
 
     #region Server Logic
 
@@ -106,10 +105,9 @@ public class LobbyState : NetworkBehaviour
 
     private void OnPlayerCountChanged(int oldCount, int newCount)
     {
-        if (playerCountText != null)
-            playerCountText.text = $"Players in Lobby: {newCount}";
+        Debug.Log($"[Client] OnPlayerCountChanged: {oldCount} → {newCount}");
+        playerCountText.text = $"Players in Lobby: {newCount}";
     }
-
     private void OnTimerValueChanged(float oldTime, float newTime)
     {
         if (timerText == null) return;

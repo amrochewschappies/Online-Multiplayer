@@ -1,4 +1,4 @@
-// GameLobbyManager.cs (updated)
+// GameLobbyManager.cs
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameLobbyManager : NetworkRoomManager
 {
     private LobbyState lobbyState;
-
     public static GameLobbyManager Instance;
 
     public override void Awake()
@@ -18,9 +17,9 @@ public class GameLobbyManager : NetworkRoomManager
     public override void OnStartServer()
     {
         base.OnStartServer();
-        // Ensure a LobbyState exists in the RoomScene
         if (NetworkServer.active && SceneManager.GetActiveScene().name == RoomScene)
             SpawnLobbyState();
+        
     }
 
     public override void OnServerSceneChanged(string sceneName)
@@ -32,31 +31,37 @@ public class GameLobbyManager : NetworkRoomManager
 
     private void SpawnLobbyState()
     {
-        // Find or create the LobbyState GameObject
+        // find any existing one…
         lobbyState = FindObjectOfType<LobbyState>();
         if (lobbyState == null)
         {
+            // …or create it only if it doesn’t exist
             var go = new GameObject("LobbyState");
-            var ni = go.AddComponent<NetworkIdentity>();
+            go.AddComponent<NetworkIdentity>();
             lobbyState = go.AddComponent<LobbyState>();
+
+            // initialize *once* here, before spawning
+            lobbyState.InitializeState(numPlayers: 0);
+
             NetworkServer.Spawn(go);
         }
-        lobbyState.InitializeState(numPlayers: numPlayers);
     }
 
-    public override void OnRoomServerConnect(NetworkConnectionToClient conn)
+
+    // === THIS FIRES WHEN Mirror HAS INCREMENTED numPlayers ===
+    public override void OnRoomServerAddPlayer(NetworkConnectionToClient conn)
     {
-        base.OnRoomServerConnect(conn);
+        base.OnRoomServerAddPlayer(conn);
+        Debug.Log($"[Server] OnRoomServerAddPlayer → numPlayers = {numPlayers}");
         lobbyState.UpdatePlayerCount(numPlayers);
     }
 
+    // === THIS FIRES WHEN Mirror HAS DECREMENTED numPlayers ===
     public override void OnRoomServerDisconnect(NetworkConnectionToClient conn)
     {
         base.OnRoomServerDisconnect(conn);
-        // numPlayers has already decremented
         lobbyState.UpdatePlayerCount(numPlayers);
     }
 
-// Other overrides (OnRoomServerPlayersReady, etc.) remain unchanged
-
+    // No need to override OnRoomServerConnect for player‐count updates.
 }
