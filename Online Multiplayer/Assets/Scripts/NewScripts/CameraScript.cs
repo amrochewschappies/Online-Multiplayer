@@ -11,6 +11,15 @@ public class CameraScript : MonoBehaviour
     private float yaw = 0f;
     private float pitch = 10f;
 
+    Transform camPos;
+    Vector3 camOffset;
+    Vector3 originalCamOffset;
+    
+
+    private bool isShaking = false;
+    private float shakeDuration = 0f;
+    private float shakeAmount = 0.1f;
+
     void LateUpdate()
     {
         if (target == null) return;
@@ -29,4 +38,29 @@ public class CameraScript : MonoBehaviour
         transform.position = target.position + rotation * offset;
         transform.LookAt(target);
     }
+
+    void Update()
+    {
+        if (isShaking)
+        {
+            if (shakeDuration > 0)
+            {
+                shakeDuration -= Time.deltaTime;
+                camPos.localPosition = originalCamOffset + Random.insideUnitSphere * shakeAmount;
+            }
+            else
+            {
+                isShaking = false;
+                camPos.localPosition = originalCamOffset; // Reset to original position
+            }
+        }
+    }
+
+    public void TriggerShake(float amount, float duration)
+    {
+        shakeAmount = amount;
+        shakeDuration = duration;
+        isShaking = true;
+    }
 }
+
