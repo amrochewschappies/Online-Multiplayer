@@ -20,6 +20,11 @@ public class CameraScript : MonoBehaviour
     private float shakeDuration = 0f;
     private float shakeAmount = 0.1f;
 
+    void Start()
+    {
+        camPos = transform;
+    }
+
     void LateUpdate()
     {
         if (target == null) return;
