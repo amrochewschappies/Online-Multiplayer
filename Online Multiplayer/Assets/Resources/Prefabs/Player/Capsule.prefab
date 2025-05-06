@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 239393018793166285}
   - component: {fileID: 3269176119398001893}
   - component: {fileID: 639447754153096419}
+  - component: {fileID: 2763870897593665579}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: de30f8e500ed7d949b1ffde34435691e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,3 +111,17 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2763870897593665579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957266540604179557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d96c651d90afd4581208e8501d7246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplosionParticleFX: {fileID: 7341748520033679536, guid: e2a490d9fc82b494b9ea9e9751e1af36, type: 3}
+  cameraScript: {fileID: 0}
