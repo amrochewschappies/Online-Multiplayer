@@ -11,12 +11,6 @@ public class TutorialScript : MonoBehaviour
     private float currentSpeed = 0f;
     public GameObject MeshThing;
 
-    void Start()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     void Update()
     {
 
