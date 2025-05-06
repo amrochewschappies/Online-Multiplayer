@@ -4,8 +4,15 @@ public class TrailCollider : MonoBehaviour
 {
 	public GameObject ExplosionParticleFX;
 	public CameraScript cameraScript;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+	public GameObject colliderPrefab; // Small object with a collider
+	public float spawnInterval = 0.1f;
+	public float lifeTime;
+
+	private float timer = 0f;
+
+
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
     {
         
     }
@@ -13,8 +20,14 @@ public class TrailCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+		timer += Time.deltaTime;
+		if (timer >= spawnInterval)
+		{
+			timer = 0f;
+			GameObject trailCollider = Instantiate(colliderPrefab, transform.position, Quaternion.identity);
+			Destroy(trailCollider, lifeTime);
+		}
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -24,8 +37,31 @@ public class TrailCollider : MonoBehaviour
 			{
 				Debug.Log("Collision on the asshole");
 				Instantiate(ExplosionParticleFX, other.gameObject.transform.position, Quaternion.identity);
-				cameraScript.TriggerShake(0.1f, 1f);
+
+				// Go up to parent, then to grandparent, then find sibling named "Camera"
+				Transform grandparent = transform.parent?.parent;
+				if (grandparent != null)
+				{
+					Transform cameraTransform = grandparent.Find("Main Camera"); // Make sure this matches the actual name
+					if (cameraTransform != null)
+					{
+						CameraScript cameraScript = cameraTransform.GetComponent<CameraScript>();
+						if (cameraScript != null)
+						{
+							cameraScript.TriggerShake(0.1f, 1f);
+						}
+						else
+						{
+							Debug.LogWarning("CameraScript not found on Camera GameObject");
+						}
+					}
+					else
+					{
+						Debug.LogWarning("Camera GameObject not found as sibling of grandparent");
+					}
+				}
 			}
+
 		}
 		else if (gameObject.CompareTag("Team2Trail"))
 		{
