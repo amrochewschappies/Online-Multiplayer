@@ -2,18 +2,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class CustomNetworkManager : NetworkManager
+public class CustomNetworkManager : NetworkRoomManager
 {
-    public List<Transform> spawnPoints = new List<Transform>();  // List of spawn points
+    public List<Transform> spawnPoints = new List<Transform>(); // List of spawn points
     public List<GameObject> Players = new List<GameObject>(); // List of players
-    private bool gameStarted = false; 
-    private int playerAmount = 0; 
+    private bool gameStarted = false;
+    private int playerAmount = 0;
+    public PlayerCount lobbyPlayerCounter;
+
+    public override void OnRoomServerAddPlayer(NetworkConnectionToClient conn)
+    {
+        base.OnRoomServerAddPlayer(conn);
+
+        Players.Add(conn.identity.gameObject);
+
+        UpdatePlayerCountUI();
+    }
+
+    public override void OnRoomServerDisconnect(NetworkConnectionToClient conn)
+    {
+        if (conn.identity != null)
+        {
+            Players.Remove(conn.identity.gameObject);
+        }
+
+        base.OnRoomServerDisconnect(conn);
+
+        UpdatePlayerCountUI();
+    }
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         if (spawnPoints.Count == 0)
         {
-            FindSpawnPoints();  // Dynamically find them
+            FindSpawnPoints(); // Dynamically find them
         }
 
         if (spawnPoints.Count == 0)
@@ -21,12 +43,13 @@ public class CustomNetworkManager : NetworkManager
             Debug.LogError("No spawn points available! Cannot spawn player.");
             return;
         }
+
         int spawnIndex = NetworkServer.connections.Count - 1;
         Transform spawnPoint = spawnPoints[spawnIndex % spawnPoints.Count];
-        
+
         GameObject player = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
-        
+
         Players.Add(player);
         SortPlayers();
     }
@@ -65,10 +88,21 @@ public class CustomNetworkManager : NetworkManager
 
     public override void OnServerChangeScene(string newSceneName) //working
     {
-        base.OnServerChangeScene(newSceneName); 
+        base.OnServerChangeScene(newSceneName);
         if (newSceneName == "LobbyScene")
         {
             FindSpawnPoints();
+        }
+    }
+
+    private void UpdatePlayerCountUI()
+    {
+        if (lobbyPlayerCounter == null)
+            lobbyPlayerCounter = FindObjectOfType<PlayerCount>();
+
+        if (lobbyPlayerCounter != null && lobbyPlayerCounter.isServer)
+        {
+            lobbyPlayerCounter.playerCount = Players.Count;
         }
     }
 }
