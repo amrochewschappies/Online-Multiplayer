@@ -10,19 +10,20 @@ public class TrailCollider : MonoBehaviour
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
-	{
+    {
+        
+    }
 
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
+    // Update is called once per frame
+    void Update()
+    {
+		
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (gameObject.CompareTag("Team1Trail"))
+		Transform greatGrandparent = transform.parent?.parent?.parent;
+		if (greatGrandparent != null && greatGrandparent.CompareTag("Team1"))
 		{
 			if (other.gameObject.CompareTag("Team2"))
 			{
@@ -38,7 +39,7 @@ public class TrailCollider : MonoBehaviour
 					{
 						CameraScript cameraScript = cameraTransform.GetComponent<CameraScript>();
 						if (cameraScript != null)
-						{
+						{	
 							cameraScript.TriggerShake(0.1f, 1f);
 						}
 						else
@@ -54,7 +55,7 @@ public class TrailCollider : MonoBehaviour
 			}
 
 		}
-		else if (gameObject.CompareTag("Team2Trail"))
+		else if (greatGrandparent != null && greatGrandparent.CompareTag("Team2"))
 		{
 			if (other.gameObject.CompareTag("Team1"))
 			{

@@ -21,6 +21,7 @@ public class TrailSpawner : MonoBehaviour
         {
             timer = 0f;
             GameObject trailCollider = Instantiate(colliderPrefab, transform.position, Quaternion.LookRotation(grandparent.transform.forward));
+            trailCollider.transform.SetParent(grandparent.parent.transform);
             Destroy(trailCollider, lifeTime);
         }
     }
