@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 73374394448798527}
   offset: {x: 4.02, y: 2, z: -5}
-  rotationSpeed: 1.96
+  rotationSpeed: 1.99
   pitchMin: -20
   pitchMax: 60
 --- !u!1 &5199728976241863107
