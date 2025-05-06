@@ -274,8 +274,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7041571282722611144}
   - component: {fileID: 2484423112722248854}
-  - component: {fileID: 377082482281104397}
   - component: {fileID: 3244705853352038138}
+  - component: {fileID: 2415757444557766949}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Team1Trail
@@ -405,20 +405,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &377082482281104397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5199728976241863107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78d96c651d90afd4581208e8501d7246, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExplosionParticleFX: {fileID: 7341748520033679536, guid: e2a490d9fc82b494b9ea9e9751e1af36, type: 3}
-  cameraScript: {fileID: 5725158430485892217}
 --- !u!135 &3244705853352038138
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -440,6 +426,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.42
   m_Center: {x: 0.042588815, y: -0.02096139, z: 1.8576357}
+--- !u!114 &2415757444557766949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199728976241863107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71812a9c4c4b124fa0eb2cc9213af86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderPrefab: {fileID: 5348711904303244370, guid: 6a010b0266374384ebbab7987d66efd0, type: 3}
+  spawnInterval: 1
+  lifeTime: 3.8
+  grandparent: {fileID: 0}
 --- !u!1 &6105505884275009088
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,10 +454,10 @@ GameObject:
   - component: {fileID: 8099619429142769247}
   - component: {fileID: 3288774142910574392}
   - component: {fileID: 5404837491604951801}
-  - component: {fileID: 1076344341948615411}
   - component: {fileID: 8208202669417538807}
   - component: {fileID: 1861595198255294234}
   - component: {fileID: 7326032222896072302}
+  - component: {fileID: -1472631971117794547}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -507,7 +509,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 96
   m_CollisionDetection: 1
 --- !u!114 &3288774142910574392
 MonoBehaviour:
@@ -560,27 +562,6 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
---- !u!114 &1076344341948615411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6105505884275009088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a12945240ab1a498946fcb2842b366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  acceleration: 5
-  maxSpeed: 50
-  turnSpeed: 100
-  leanAngle: 15
-  deceleration: 10
-  MeshThing: {fileID: 4402040804895623035}
 --- !u!114 &8208202669417538807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,6 +614,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.45, y: 0.77, z: 1}
   m_Center: {x: 0, y: 0.28, z: 0}
+--- !u!114 &-1472631971117794547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105505884275009088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d499ee9dd063540a7ca86b5c7336c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 4.5
+  maxSpeed: 7.29
+  turnSpeed: 17.9
+  leanAngle: 15
+  deceleration: 10
+  MeshThing: {fileID: 4402040804895623035}
 --- !u!1 &7620167673275810977
 GameObject:
   m_ObjectHideFlags: 0

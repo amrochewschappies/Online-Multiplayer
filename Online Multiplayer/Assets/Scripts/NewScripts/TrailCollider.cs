@@ -4,11 +4,8 @@ public class TrailCollider : MonoBehaviour
 {
 	public GameObject ExplosionParticleFX;
 	public CameraScript cameraScript;
-	public GameObject colliderPrefab; // Small object with a collider
-	public float spawnInterval = 0.1f;
-	public float lifeTime;
 
-	private float timer = 0f;
+
 
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,13 +17,7 @@ public class TrailCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		timer += Time.deltaTime;
-		if (timer >= spawnInterval)
-		{
-			timer = 0f;
-			GameObject trailCollider = Instantiate(colliderPrefab, transform.position, Quaternion.identity);
-			Destroy(trailCollider, lifeTime);
-		}
+		
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -37,7 +28,7 @@ public class TrailCollider : MonoBehaviour
 			{
 				Debug.Log("Collision on the asshole");
 				Instantiate(ExplosionParticleFX, other.gameObject.transform.position, Quaternion.identity);
-
+				Destroy(other.gameObject);
 				// Go up to parent, then to grandparent, then find sibling named "Camera"
 				Transform grandparent = transform.parent?.parent;
 				if (grandparent != null)
