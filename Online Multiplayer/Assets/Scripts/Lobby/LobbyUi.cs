@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class LobbyUI : MonoBehaviour
 {
     public TMP_InputField nameInput;
@@ -18,6 +19,7 @@ public class LobbyUI : MonoBehaviour
     [Header("UI Custom Lobby Display Logic")]
     public Button  CustomHostButton;
     public Button  CustomJoinButton;
+    public Button TutButton;
     public GameObject hostPanel;
     public GameObject JoinLobbyPanel;
     public GameObject CustomPanel;
@@ -67,6 +69,10 @@ public class LobbyUI : MonoBehaviour
                 StartCoroutine(ShowErrorText());
                 
             }
+        });
+        TutButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("TutorialScene");
         });
     }
     private void Update()

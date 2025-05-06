@@ -1610,6 +1610,7 @@ MonoBehaviour:
   joinButton: {fileID: 906158088}
   CustomHostButton: {fileID: 900330574}
   CustomJoinButton: {fileID: 1399419187}
+  TutButton: {fileID: 201268146}
   hostPanel: {fileID: 583936548}
   JoinLobbyPanel: {fileID: 1396837420}
   CustomPanel: {fileID: 1645133449}
