@@ -1,7 +1,6 @@
 using UnityEngine;
-using Mirror;
 
-public class BikeController : NetworkBehaviour
+public class TutorialScript : MonoBehaviour
 {
     public float acceleration = 20f;
     public float maxSpeed = 50f;
@@ -14,7 +13,6 @@ public class BikeController : NetworkBehaviour
 
     void Update()
     {
-        if (!isOwned) return;
 
         float moveInput = Input.GetAxis("Vertical");
         float turnInput = Input.GetAxis("Horizontal");
