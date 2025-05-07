@@ -3066,6 +3066,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: RoomScene
+      value: Assets/Scenes/LobbyScene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: GameplayScene
+      value: Assets/Scenes/GameScene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: roomPlayerPrefab
+      value: 
+      objectReference: {fileID: 219712459685092263, guid: 01274b0aa4645b44fb7e692b5f3982c1, type: 3}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: roomPrefabPlayer
+      value: 
+      objectReference: {fileID: 6105505884275009088, guid: 01274b0aa4645b44fb7e692b5f3982c1, type: 3}
     - target: {fileID: 9185295465421061667, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.075344086

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class VideoHandler : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
+    private bool hasSkipped;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class VideoHandler : MonoBehaviour
 
     private void Update()
     {
-        if (videoPlayer.time > 0)
+        if (videoPlayer.time > 0 & !hasSkipped)
         {
             SkipVideo();    
         }
@@ -35,6 +36,7 @@ public class VideoHandler : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            hasSkipped = true;
             if (videoPlayer != null && videoPlayer.isPrepared)
             {
                 videoPlayer.time = videoPlayer.length;

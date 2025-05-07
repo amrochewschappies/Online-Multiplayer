@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
+
 public class CustomNetworkManager : NetworkRoomManager
 {
     public List<Transform> spawnPoints = new List<Transform>();  // List of spawn points
@@ -9,7 +10,7 @@ public class CustomNetworkManager : NetworkRoomManager
     public GameObject roomPrefabPlayer;
     private bool gameStarted = false; 
     private int playerAmount = 0; 
-
+    public static event System.Action OnPlayerReady;
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         if (spawnPoints.Count == 0)
@@ -31,7 +32,7 @@ public class CustomNetworkManager : NetworkRoomManager
         Players.Add(player);
         SortPlayers();
     }
-
+    
     private void FindSpawnPoints() //working 
     {
         GameObject[] spawnObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -66,10 +67,33 @@ public class CustomNetworkManager : NetworkRoomManager
 
     public override void OnServerChangeScene(string newSceneName) //working
     {
+        // first change to lobby scene
         base.OnServerChangeScene(newSceneName); 
         if (newSceneName == "LobbyScene")
         {
             FindSpawnPoints();
         }
+        // Do the same and find spawn points
+        if (newSceneName == "GameScene")
+        {
+            FindSpawnPoints();
+        }
     }
+    
+    //this will make sure on player ready fires
+    public static void InvokePlayerReady()
+    {
+        OnPlayerReady?.Invoke();
+        Debug.Log("A player has readied up.");
+    }
+
+    
+    // when all players are readt
+        public override void OnRoomServerPlayersReady()
+        {
+            Debug.Log("All players are ready — starting game!");
+            ServerChangeScene(GameplayScene); // This will transition to your game scene
+        }
+    
+
 }
