@@ -5,12 +5,14 @@ using Mirror;
 
 public class CustomNetworkManager : NetworkRoomManager
 {
+    public static CustomNetworkManager instance;
     public List<Transform> spawnPoints = new List<Transform>();  // List of spawn points
     public List<GameObject> Players = new List<GameObject>(); // List of players
     public GameObject roomPrefabPlayer;
     private bool gameStarted = false; 
     private int playerAmount = 0; 
     public static event System.Action OnPlayerReady;
+    
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         if (spawnPoints.Count == 0)

@@ -15,14 +15,32 @@ public class Timer : NetworkBehaviour
     void Update()
     {
         if (!isServer) return;
+
+        int playerCount = CustomNetworkManager.instance != null ? CustomNetworkManager.instance.Players.Count : 0;
+        
+        if (playerCount != 2)
+        {
+            if (currentTime != 60f) 
+            {
+                currentTime = 60f;
+                isCountingDown = false;
+            }
+            return;
+        }
+        
+        if (!isCountingDown)
+            isCountingDown = true;
+
         if (isCountingDown && currentTime > 0f)
         {
             currentTime -= Time.deltaTime;
-            if (currentTime <= 0f)
+
+            if (currentTime <= 0f && playerCount == 2)
             {
                 currentTime = 0f;
                 isCountingDown = false;
 
+                NetworkManager.singleton.ServerChangeScene("GameScene");
             }
         }
     }
