@@ -13,6 +13,11 @@ public class CustomNetworkManager : NetworkRoomManager
     private bool gameStarted = false;
     private int playerAmount = 0;
     public static event System.Action OnPlayerReady;
+    public Material team2Material;
+    public Material team1Material;
+    public Material team1trailmaterial;
+    public Material team2trailmaterial;
+
     public override void Awake()
     {
         base.Awake();
@@ -63,15 +68,75 @@ public class CustomNetworkManager : NetworkRoomManager
         {
             if (i < half)
             {
-                Players[i].tag = "Team2";
+                Players[i].tag = "Team1";
+                Transform mrC = Players[i].transform.Find("MrC");
+
+                if (mrC != null)
+                {
+                    Transform box = mrC.Find("MetalPiece.001");
+                    Transform bw = mrC.Find("Back Wheel");
+
+                    if (box != null)
+                    {
+                        MeshRenderer meshRenderer = box.GetComponent<MeshRenderer>();
+                        if (meshRenderer != null)
+                        {
+                            meshRenderer.material = team1Material; // Replace with your material
+                        }
+                    }
+
+                    if (bw != null)
+                    {
+                        Transform trail = bw.Find("Trail");
+                        if (trail != null)
+                        {
+                            TrailRenderer trailRenderer = trail.GetComponent<TrailRenderer>();
+                            if (trailRenderer != null)
+                            {
+                                trailRenderer.material = team1trailmaterial;
+                            }
+                        }
+                    }
+                }
+
             }
             else
             {
-                Players[i].tag = "Team1";
+                Players[i].tag = "Team2";
+                Transform mrC = Players[i].transform.Find("MrC");
+
+                if (mrC != null)
+                {
+                    Transform box = mrC.Find("MetalPiece.001");
+                    Transform bw = mrC.Find("Back Wheel");
+
+                    if (box != null)
+                    {
+                        MeshRenderer meshRenderer = box.GetComponent<MeshRenderer>();
+                        if (meshRenderer != null)
+                        {
+                            meshRenderer.material = team2Material; // Replace with your material
+                        }
+                    }
+
+                    if (bw != null)
+                    {
+                        Transform trail = bw.Find("Trail");
+                        if (trail != null)
+                        {
+                            TrailRenderer trailRenderer = trail.GetComponent<TrailRenderer>();
+                            if (trailRenderer != null)
+                            {
+                                trailRenderer.material = team2trailmaterial;
+                            }
+                        }
+                    }
+                }
+
             }
+        }
 
             playerAmount += 1;
-        }
     }
 
     public override void OnServerChangeScene(string newSceneName) //working

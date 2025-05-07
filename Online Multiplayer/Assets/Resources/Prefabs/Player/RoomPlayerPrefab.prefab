@@ -323,8 +323,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
+  m_Constraints: 96
+  m_CollisionDetection: 3
 --- !u!114 &3288774142910574392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +436,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6105505884275009088}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 087f7c19db992b44183071344b6408ba, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -444,7 +444,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -554,13 +554,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1177783708779950850, guid: 20bd5e9a0066d2e46a2c856503aace70, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1177783708779950850, guid: 20bd5e9a0066d2e46a2c856503aace70, type: 3}
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1177783708779950850, guid: 20bd5e9a0066d2e46a2c856503aace70, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

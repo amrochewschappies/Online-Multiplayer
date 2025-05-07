@@ -3478,9 +3478,25 @@ PrefabInstance:
       value: NetworkManager
       objectReference: {fileID: 0}
     - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: team1Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 2112eee746fec0b4b9661f1cb741934a, type: 2}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: team2Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 9bddd8edd87af9240835c6b1d3251898, type: 2}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
       propertyPath: playerSpawnMethod
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: team1trailmaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: d36db31a9426a6a48a634fc0537feb8c, type: 2}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: team2trailmaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b1ef06d6375cfc4c98d5021cc97d641, type: 2}
     - target: {fileID: 9185295465421061667, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.075344086

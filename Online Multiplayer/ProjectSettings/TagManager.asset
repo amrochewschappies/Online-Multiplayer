@@ -19,8 +19,8 @@ TagManager:
   - Ground
   - Drivable
   - Team1Trail
-  - 
-  - 
+  - TrailCollider
+  - WallCollider
   - 
   - 
   - 
