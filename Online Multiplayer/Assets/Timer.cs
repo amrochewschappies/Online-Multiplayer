@@ -5,7 +5,7 @@ using TMPro;
 
 public class Timer : NetworkBehaviour
 {
-    //Timer script take from Andy
+
     [SyncVar(hook = nameof(OnTimeChanged))]
     public float currentTime = 60f;
 
@@ -15,33 +15,61 @@ public class Timer : NetworkBehaviour
     void Update()
     {
         if (!isServer) return;
-
-        int playerCount = CustomNetworkManager.instance != null ? CustomNetworkManager.instance.Players.Count : 0;
         
-        if (playerCount != 2)
+        if (CustomNetworkManager.instance.roomSlots.Count < 2 || CustomNetworkManager.instance.roomSlots.Count == 3)
         {
-            if (currentTime != 60f) 
-            {
-                currentTime = 60f;
-                isCountingDown = false;
-            }
+            isCountingDown = false;
+            currentTime = 60f;
             return;
         }
-        
-        if (!isCountingDown)
-            isCountingDown = true;
 
         if (isCountingDown && currentTime > 0f)
         {
             currentTime -= Time.deltaTime;
 
-            if (currentTime <= 0f && playerCount == 2)
+            if (currentTime <= 0f)
             {
                 currentTime = 0f;
                 isCountingDown = false;
-
-                NetworkManager.singleton.ServerChangeScene("GameScene");
+                
+                if (CustomNetworkManager.instance.roomSlots.Count >= 2 && CustomNetworkManager.instance.roomSlots.Count != 3)
+                {
+                    NetworkManager.singleton.ServerChangeScene("GameScene");
+                }
+                else
+                {
+                    currentTime = 60f;
+                }
             }
+        }
+    }
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        CustomNetworkManager.OnPlayerReady += CheckStartConditions;
+    }
+
+    [ServerCallback]
+    void CheckStartConditions()
+    {
+        if (CustomNetworkManager.instance.roomSlots.Count >= 2)
+        {
+            StartCountdown();
+        }
+    }
+
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
+        CustomNetworkManager.OnPlayerReady -= CheckStartConditions;
+    }
+    [Server]
+    public void StartCountdown()
+    {
+        if (!isCountingDown && CustomNetworkManager.instance.roomSlots.Count >= 2)
+        {
+            isCountingDown = true;
+            Debug.Log("Countdown started.");
         }
     }
 
