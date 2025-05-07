@@ -88,12 +88,12 @@ public class CustomNetworkManager : NetworkRoomManager
     }
 
     
-    // when all players are readt
-        public override void OnRoomServerPlayersReady()
+    // when all players are ready
+        /*public override void OnRoomServerPlayersReady()
         {
             Debug.Log("All players are ready — starting game!");
             ServerChangeScene(GameplayScene); // This will transition to your game scene
-        }
+        }*/
     
 
 }
