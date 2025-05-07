@@ -14,15 +14,16 @@ public class Timer : NetworkBehaviour
 
     void Update()
     {
-        if (!isServer) return;
-        
-        if (CustomNetworkManager.instance.roomSlots.Count < 2 || CustomNetworkManager.instance.roomSlots.Count == 3)
+        if (!isServer || CustomNetworkManager.instance == null) return;
+
+        int count = CustomNetworkManager.instance.roomSlots.Count;
+
+        if (count < 2 || count == 3)
         {
-            isCountingDown = false;
-            currentTime = 60f;
+            ResetTimer();
             return;
         }
-
+        
         if (isCountingDown && currentTime > 0f)
         {
             currentTime -= Time.deltaTime;
@@ -31,16 +32,30 @@ public class Timer : NetworkBehaviour
             {
                 currentTime = 0f;
                 isCountingDown = false;
-                
-                if (CustomNetworkManager.instance.roomSlots.Count >= 2 && CustomNetworkManager.instance.roomSlots.Count != 3)
-                {
-                    NetworkManager.singleton.ServerChangeScene("GameScene");
-                }
-                else
-                {
-                    currentTime = 60f;
-                }
+                StartGameIfValid(count);
             }
+        }
+        else if (!isCountingDown)
+        {
+            isCountingDown = true; 
+        }
+    }
+
+    void ResetTimer()
+    {
+        currentTime = 60f;
+        isCountingDown = false;
+    }
+
+    void StartGameIfValid(int playerCount)
+    {
+        if (playerCount >= 2 && playerCount != 3)
+        {
+            NetworkManager.singleton.ServerChangeScene("GameScene");
+        }
+        else
+        {
+            ResetTimer();
         }
     }
     public override void OnStartServer()

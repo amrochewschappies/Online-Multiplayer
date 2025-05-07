@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System.Collections;
 
 
 public class CustomNetworkManager : NetworkRoomManager
 {
     public static CustomNetworkManager instance;
-    public List<Transform> spawnPoints = new List<Transform>(); // List of spawn points
-    public List<GameObject> Players = new List<GameObject>(); // List of players
+    public List<Transform> spawnPoints = new List<Transform>();
+    public List<GameObject> Players = new List<GameObject>(); 
     public GameObject roomPrefabPlayer;
     private bool gameStarted = false;
     private int playerAmount = 0;
@@ -48,6 +49,7 @@ public class CustomNetworkManager : NetworkRoomManager
         foreach (GameObject spawnObject in spawnObjects)
         {
             spawnPoints.Add(spawnObject.transform);
+            Debug.Log(spawnObject.name);
         }
     }
 
@@ -74,20 +76,59 @@ public class CustomNetworkManager : NetworkRoomManager
 
     public override void OnServerChangeScene(string newSceneName) //working
     {
-        // first change to lobby scene
+
         base.OnServerChangeScene(newSceneName);
         if (newSceneName == "LobbyScene")
         {
             FindSpawnPoints();
         }
 
-        // Do the same and find spawn points
         if (newSceneName == "GameScene")
         {
             FindSpawnPoints();
+            StartCoroutine(FindSpawnPointsAfterLoad());
+            DestroyRoomPlayers();
+            GameObject player = GameObject.Find("Player");
+            
         }
     }
 
+    private IEnumerator FindSpawnPointsAfterLoad()
+    {
+
+        while (!NetworkManager.singleton.isNetworkActive)
+        {
+            yield return null;
+        }
+
+
+        GameObject[] spawnObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        spawnPoints.Clear();
+
+        foreach (GameObject spawnObject in spawnObjects)
+        {
+            spawnPoints.Add(spawnObject.transform);
+        }
+
+
+        Debug.Log("Spawn points updated in GameScene");
+    }
+
+    private void DestroyRoomPlayers()
+    {
+      
+        foreach (GameObject player in Players)
+        {
+            if (player != null)
+            {
+                Destroy(player);  
+            }
+        }
+        
+        Players.Clear();
+
+        Debug.Log("Room players destroyed and list cleared.");
+    }
     //this will make sure on player ready fires
     public static void InvokePlayerReady()
     {
@@ -98,15 +139,10 @@ public class CustomNetworkManager : NetworkRoomManager
     public override void OnRoomServerPlayersReady()
     {
         int playerCount = roomSlots.Count;
-
-        // Prevent game start if there are exactly 1 or 3 players
-        if (playerCount == 1 || playerCount == 3)
-        {
-            Debug.Log("Not starting game — player count must not be 1 or 3.");
-            return;
-        }
-
-        Debug.Log("All players are ready. Starting the game!");
-        ServerChangeScene(GameplayScene); // Load the actual game scene
+        
+        if (playerCount == 1 || playerCount == 3) return;
+        
+        
+        ServerChangeScene(GameplayScene); 
     }
 }

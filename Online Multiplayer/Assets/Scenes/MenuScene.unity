@@ -3477,6 +3477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3031850054021377599, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
+      propertyPath: playerSpawnMethod
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9185295465421061667, guid: a96cc9b97af965e4a80a366b213764cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.075344086
