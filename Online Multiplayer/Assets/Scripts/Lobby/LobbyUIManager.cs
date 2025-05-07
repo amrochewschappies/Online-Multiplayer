@@ -38,7 +38,7 @@ public class LobbyUIManager : MonoBehaviour
         {
             if (conn.identity != null)
             {
-                var player = conn.identity.GetComponent<LobbyPlayer>();
+                var player = conn.identity.GetComponent<PlayerUserName>();
                 if (player != null)
                 {
                     GameObject item = Instantiate(playerItemPrefab, playerListParent);

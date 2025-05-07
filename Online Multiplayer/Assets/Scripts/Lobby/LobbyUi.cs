@@ -106,4 +106,10 @@ public class LobbyUI : MonoBehaviour
         NetworkManager.singleton.ServerChangeScene("LobbyScene");
         Debug.LogWarning("LobbyScene has been set.");
     }
+
+
+    public void OnApplicationQuit() // for quit button
+    {
+        Application.Quit();
+    }
 }

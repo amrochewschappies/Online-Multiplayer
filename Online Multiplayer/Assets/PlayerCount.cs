@@ -9,6 +9,15 @@ public class PlayerCount : NetworkBehaviour
 
     public TMP_Text PlayerText;
 
+    void incremenetPlayerCount()
+    {
+        playerCount++;
+    }
+
+    void decremenetPlayerCount()
+    {
+        playerCount++;     
+    }
     void OnCountChanged(int oldCount, int newCount)
     {
         UpdatePlayerCountUI();
@@ -25,6 +34,14 @@ public class PlayerCount : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+        incremenetPlayerCount();
         UpdatePlayerCountUI();
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStartClient();
+        decremenetPlayerCount();
+        UpdatePlayerCountUI();    
     }
 }

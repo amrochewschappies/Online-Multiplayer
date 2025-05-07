@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class CustomNetworkManager : NetworkManager
+public class CustomNetworkManager : NetworkRoomManager
 {
     public List<Transform> spawnPoints = new List<Transform>();  // List of spawn points
     public List<GameObject> Players = new List<GameObject>(); // List of players
+    public GameObject roomPrefabPlayer;
     private bool gameStarted = false; 
     private int playerAmount = 0; 
 
@@ -24,7 +25,7 @@ public class CustomNetworkManager : NetworkManager
         int spawnIndex = NetworkServer.connections.Count - 1;
         Transform spawnPoint = spawnPoints[spawnIndex % spawnPoints.Count];
         
-        GameObject player = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject player = Instantiate(roomPrefabPlayer, spawnPoint.position, spawnPoint.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
         
         Players.Add(player);
