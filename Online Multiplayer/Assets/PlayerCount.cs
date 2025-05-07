@@ -8,16 +8,7 @@ public class PlayerCount : NetworkBehaviour
     public int playerCount = 0;
 
     public TMP_Text PlayerText;
-
-    void incremenetPlayerCount()
-    {
-        playerCount++;
-    }
-
-    void decremenetPlayerCount()
-    {
-        playerCount++;     
-    }
+    
     void OnCountChanged(int oldCount, int newCount)
     {
         UpdatePlayerCountUI();
@@ -27,21 +18,20 @@ public class PlayerCount : NetworkBehaviour
     {
         if (PlayerText != null)
         {
-            PlayerText.text = $"Players: {playerCount}";
+            PlayerText.text = $"Players In lobby: {playerCount}";
         }
     }
 
-    public override void OnStartClient()
+    public override void OnStartServer()
     {
-        base.OnStartClient();
-        incremenetPlayerCount();
-        UpdatePlayerCountUI();
+        base.OnStartServer();
+        playerCount++;
     }
 
-    public override void OnStopClient()
+    public override void OnStopServer()
     {
-        base.OnStartClient();
-        decremenetPlayerCount();
-        UpdatePlayerCountUI();    
+        base.OnStopServer();
+        playerCount--;
     }
+    
 }

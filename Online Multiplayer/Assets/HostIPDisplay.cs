@@ -13,7 +13,7 @@ public class HostIPDisplay : MonoBehaviour
         if (NetworkServer.active)
         {
             string ip = GetLocalIPAddress();
-            ipText.text = $"Host IP: {ip}";
+            ipText.text = $"Host IP: <color=\"blue\">{ip}";
             ipText.gameObject.SetActive(true);
         }
         else

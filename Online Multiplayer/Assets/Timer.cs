@@ -5,6 +5,7 @@ using TMPro;
 
 public class Timer : NetworkBehaviour
 {
+    //Timer script take from Andy
     [SyncVar(hook = nameof(OnTimeChanged))]
     public float currentTime = 60f;
 
@@ -35,7 +36,7 @@ public class Timer : NetworkBehaviour
     {
         if (timerText != null)
         {
-            timerText.text = timeToShow.ToString("f0");
+            timerText.text = "Game starts in: " + timeToShow.ToString("F0");
         }
     }
 

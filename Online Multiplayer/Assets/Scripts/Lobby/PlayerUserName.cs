@@ -46,7 +46,9 @@ public class PlayerUserName : NetworkBehaviour
     {
         if (UsernameText != null)
         {
-            UsernameText.text = $"Welcome {newName}, and thank you for joining us.";
+            UsernameText.text = $"Welcome {newName}! Drive Safely BOHT";
+    
+            
             UsernameText.gameObject.SetActive(true); 
             StartCoroutine(HideUsernameDisplayTextAfterDelay(5f)); 
         }
