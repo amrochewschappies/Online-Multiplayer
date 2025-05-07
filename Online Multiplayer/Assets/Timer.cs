@@ -35,7 +35,7 @@ public class Timer : NetworkBehaviour
     {
         if (timerText != null)
         {
-            timerText.text = timeToShow.ToString("Game Starts in:"+"f0");
+            timerText.text = timeToShow.ToString("f0");
         }
     }
 
